@@ -1,0 +1,11 @@
+/* Shirt.css */
+
+@media (max-width: 768px) {
+  .shirts-container {
+    overflow-x: auto;
+  }
+
+  .shirts {
+    flex-direction: row;
+  }
+}
