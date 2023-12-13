@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { shirtContainer } from "../../../Container/Container";
-import { FaShoppingCart } from "react-icons/fa";
-import "./Shirt.css"; // Import a separate CSS file for styles (optional)
+import "./Shirt.css"; // Optional for additional styles
+import { motion } from "framer-motion";
 
 const Shirt = () => {
   const [likedShirts, setLikedShirts] = useState([]);
@@ -18,43 +18,60 @@ const Shirt = () => {
   };
 
   return (
-    <div>
-      <div>
-        <p>SHIRTS</p>
-        <p>Get Up to 50% off</p>
+    <div className="flex flex-col items-center">
+      <div className="text-center font-bold text-2xl mb-8">
+        SHIRTS - Get Up to 50% off!
       </div>
-      <div className="shirts-container">
-        <div className="shirts flex flex-wrap gap-1">
-          {shirtContainer.map((shirt) => (
-            <div key={shirt.id} className="shirt-item p-2 ">
-              <img
-                src={shirt.img}
-                alt={shirt.Name}
-                className="w-70 h-80 rounded-3xl"
-              />
-              <p className="text-center">{shirt.Name}</p>
-              <p>Price: ${shirt.Price}</p>
-              <FaHeart
-                onClick={() => handleLike(shirt.id)}
-                style={{
-                  color: likedShirts.includes(shirt.id) ? "red" : "grey",
-                  cursor: "pointer",
-                }}
-              />
-              <p className="flex justify-center items-center gap-2 border-gray-300">
+      <div className="shirts-container grid grid-cols-3 gap-4">
+        {shirtContainer.map((shirt) => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            key={shirt.id}
+            className="shirt-item shadow-lg rounded-3xl overflow-hidden bg-white"
+          >
+            <img
+              src={shirt.img}
+              alt={shirt.Name}
+              className="w-72 h-80 rounded-t-3xl"
+            />
+            <div className="p-4">
+              <p className="text-center text-xl font-semibold text-sky-500">
+                {shirt.Name}
+              </p>
+              <div className="flex justify-between items-center mt-4">
+                <p className="text-gray-700 font-medium">
+                  Price: ${shirt.Price}
+                </p>
+                <FaHeart
+                  onClick={() => handleLike(shirt.id)}
+                  className={`transition duration-150 ease-in-out ${
+                    likedShirts.includes(shirt.id)
+                      ? "text-red-500"
+                      : "text-gray-400"
+                  }`}
+                  style={{ cursor: "pointer" }}
+                  animate={{ scale: likedShirts.includes(shirt.id) ? 1.2 : 1 }}
+                />
+              </div>
+              <p className="flex justify-center items-center gap-2 border-gray-200 mt-4 py-2">
                 <button
-                  className="font-semibold text-red-700 "
+                  className="font-semibold text-red-700 hover:text-red-600"
                   onClick={(e) => {
                     alert("Added to the cart");
                   }}
                 >
                   ADD TO CART
                 </button>
-                <FaShoppingCart size={18} className="text-red-500" />
+                <FaShoppingCart
+                  size={20}
+                  className="text-red-500 hover:text-red-400"
+                />
               </p>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
