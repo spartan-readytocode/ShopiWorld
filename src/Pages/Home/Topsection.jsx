@@ -27,7 +27,10 @@ const Topsection = () => {
           <p className="font-bold text-lg flex gap-3 items-center text-red-900">
             SURF BELOW TO GET OFFERS{" "}
             <button className="p-1 border-2 border-red-900 hover:bg-red-200">
-              <MdArrowDownward size={28} />
+              <a href="#shirts">
+                {" "}
+                <MdArrowDownward size={28} />
+              </a>
             </button>
           </p>
         </div>

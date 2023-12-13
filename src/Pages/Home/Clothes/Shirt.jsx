@@ -22,7 +22,10 @@ const Shirt = () => {
       <div className="text-center font-bold text-2xl mb-8">
         SHIRTS - Get Up to 50% off!
       </div>
-      <div className="shirts-container grid grid-cols-3 gap-4">
+      <div
+        className="shirts-container lg:grid lg:grid-cols-4 lg:gap-4 flex flex-wrap gap-2 justify-center "
+        id="shirts"
+      >
         {shirtContainer.map((shirt) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
