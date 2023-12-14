@@ -8,17 +8,18 @@ const Topsection = () => {
     <motion.div
       initial={{ opacity: 0, x: -100 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }} // Adjust the duration here (in seconds)
-      className="flex gap-1 p-2 m-5 pt-3 justify-center relative" // Added relative positioning
+      transition={{ duration: 0.8 }}
+      className="flex gap-1 p-2 m-5 pt-3 justify-center relative h-full"
     >
-      <div>
+      {/* Main Content */}
+      <div className="flex flex-col items-center">
         <img
           src={bg3}
           alt="Background image"
           className="w-full h-96 rounded-xl"
         />
-        <div className="itemcontainer lg:px-10 py-6 flex flex-col justify-center ">
-          <p className="text-3xl font-mono font-extrabold leading-9 text-red-600 ">
+        <div className="itemcontainer lg:px-10 py-6 text-center">
+          <p className="text-3xl font-mono font-extrabold leading-9 text-red-600">
             COMEON GRAB SOME INTERESTING OFFERS
           </p>
           <p className="text-2xl font-mono font-extrabold leading-loose text-red-950">
@@ -28,21 +29,24 @@ const Topsection = () => {
             SURF BELOW TO GET OFFERS{" "}
             <button className="p-1 border-2 border-red-900 hover:bg-red-200">
               <a href="#shirts">
-                {" "}
                 <MdArrowDownward size={28} />
               </a>
             </button>
           </p>
         </div>
       </div>
+
+      {/* Additional Image (visible on lg screens) */}
       <div className="hidden lg:block">
         <img
           src={bg2}
           alt="Background image"
-          className="rounded-2xl hidden lg:block"
+          className="rounded-2xl"
           style={{ width: "33vw", height: "75vh" }}
         />
       </div>
+
+      {/* Red Bottom Bar */}
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-red-400 h-1 w-16 rounded-full"></div>
     </motion.div>
   );

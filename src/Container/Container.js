@@ -50,13 +50,6 @@ export const shirtContainer = [
     Liked: false,
     img: shirt4,
   },
-  {
-    id: 5,
-    Name: "Leather Shirt",
-    Price: 340,
-    Liked: false,
-    img: shirt5,
-  },
 ];
 export const tshirtContainer = [
   {
@@ -86,13 +79,6 @@ export const tshirtContainer = [
     Price: 456,
     Liked: false,
     img: tshirt4,
-  },
-  {
-    id: 10,
-    Name: "Denim Tshirt",
-    Price: 456,
-    Liked: false,
-    img: tshirt5,
   },
 ];
 export const hoodieContainer = [
