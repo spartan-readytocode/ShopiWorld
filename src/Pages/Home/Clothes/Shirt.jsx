@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import { shirtContainer } from "../../../Container/Container";
-import "./Shirt.css"; // Optional for additional styles
+import {
+  addLikedShirt,
+  removeLikedShirt,
+} from "../../../Store/Features/LikedClothes";
+import { addToCart } from "../../../Store/Features/Cartslice"; // Import addToCart action from cartSlice
 import { motion } from "framer-motion";
+import { shirtContainer } from "../../../Container/Container";
 
 const Shirt = () => {
-  const [likedShirts, setLikedShirts] = useState([]);
+  const dispatch = useDispatch();
+  const likedShirts = useSelector((state) => state.likedShirts.likedShirts);
 
   const handleLike = (id) => {
-    setLikedShirts((prevLikedShirts) => {
-      if (prevLikedShirts.includes(id)) {
-        return prevLikedShirts.filter((shirtId) => shirtId !== id);
-      } else {
-        return [...prevLikedShirts, id];
-      }
-    });
+    if (likedShirts.includes(id)) {
+      dispatch(removeLikedShirt(id));
+    } else {
+      dispatch(addLikedShirt(id));
+    }
+  };
+
+  const handleAddToCart = (shirt) => {
+    dispatch(addToCart(shirt));
+    alert("Added to the cart");
   };
 
   return (
@@ -58,9 +67,7 @@ const Shirt = () => {
               <p className="flex justify-center items-center gap-2 border-gray-200 mt-4 py-2">
                 <button
                   className="font-semibold text-red-700 hover:text-red-600"
-                  onClick={(e) => {
-                    alert("Added to the cart");
-                  }}
+                  onClick={() => handleAddToCart(shirt)}
                 >
                   ADD TO CART
                 </button>
